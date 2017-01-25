@@ -36,18 +36,45 @@
                                     <action selector="positionSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="OeS-tp-hLM"/>
                                 </connections>
                             </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.25" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="cD4-Np-Xoz">
+                                <rect key="frame" x="35" y="301" width="154" height="31"/>
+                                <connections>
+                                    <action selector="rateChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="GGu-GV-77y"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9j-cV-S5e">
+                                <rect key="frame" x="37" y="276" width="35" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6O-cK-MpY">
+                                <rect key="frame" x="307" y="301" width="30" height="30"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playPausePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jfn-Iw-k81"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="E6O-cK-MpY" firstAttribute="trailing" secondItem="nVF-Hz-CEb" secondAttribute="trailing" id="4mn-BM-dF1"/>
+                            <constraint firstItem="cD4-Np-Xoz" firstAttribute="top" secondItem="nVF-Hz-CEb" secondAttribute="bottom" constant="73" id="By4-si-Ov4"/>
+                            <constraint firstItem="cD4-Np-Xoz" firstAttribute="width" secondItem="nVF-Hz-CEb" secondAttribute="width" multiplier="0.5" id="HmT-uO-USe"/>
+                            <constraint firstItem="cD4-Np-Xoz" firstAttribute="leading" secondItem="nVF-Hz-CEb" secondAttribute="leading" id="JUl-RM-rcH"/>
                             <constraint firstItem="nVF-Hz-CEb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="QbN-FE-ZjU"/>
                             <constraint firstItem="1ly-M6-eNm" firstAttribute="top" secondItem="nVF-Hz-CEb" secondAttribute="bottom" constant="8" id="Xiz-rI-VtE"/>
+                            <constraint firstItem="E6O-cK-MpY" firstAttribute="bottom" secondItem="cD4-Np-Xoz" secondAttribute="bottom" id="gOM-Xh-l20"/>
                             <constraint firstItem="1ly-M6-eNm" firstAttribute="width" secondItem="nVF-Hz-CEb" secondAttribute="width" id="hlB-1n-lBG"/>
+                            <constraint firstItem="T9j-cV-S5e" firstAttribute="leading" secondItem="cD4-Np-Xoz" secondAttribute="leading" id="mKg-y3-FrR"/>
                             <constraint firstItem="1ly-M6-eNm" firstAttribute="leading" secondItem="nVF-Hz-CEb" secondAttribute="leading" id="nAP-MJ-dTP"/>
+                            <constraint firstItem="cD4-Np-Xoz" firstAttribute="top" secondItem="T9j-cV-S5e" secondAttribute="bottom" constant="4" id="pGc-Vt-ob4"/>
                             <constraint firstItem="nVF-Hz-CEb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="pan-ac-QrX"/>
                             <constraint firstItem="nVF-Hz-CEb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ul8-ia-Pdo"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="playPauseButton" destination="E6O-cK-MpY" id="BWm-vZ-vKW"/>
                         <outlet property="positionSlider" destination="1ly-M6-eNm" id="0OK-18-jMa"/>
                         <outlet property="videoContainer" destination="nVF-Hz-CEb" id="tPh-Fs-BpL"/>
                     </connections>

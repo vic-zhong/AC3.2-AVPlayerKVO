@@ -13,8 +13,11 @@ private var kvoContext = 0
 
 class ViewController: UIViewController {
     var player: AVPlayer!
+    var userPlayRate: Float = 1.0
+    var userPlaying: Bool = false
     
     @IBOutlet weak var videoContainer: UIView!
+    @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var positionSlider: UISlider!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +67,7 @@ class ViewController: UIViewController {
             if keyPath == "status",
                 let item = object as? AVPlayerItem {
                 if item.status == .readyToPlay {
-                    player.play()
+                    playPauseButton.isEnabled = true
                 }
             }
         }
@@ -77,6 +80,39 @@ class ViewController: UIViewController {
         let newPosition = Double(sender.value) * item.duration.seconds
         
         player.seek(to: CMTime(seconds: newPosition, preferredTimescale: 1000))
+    }
+    
+    @IBAction func rateChange(_ sender: UISlider) {
+        guard let item = player.currentItem else { return }
+        
+        userPlayRate = sender.value
+        
+        if item.canPlayFastForward {
+            print("I can fast forward. Rate requested: \(sender.value).")
+        }
+        if item.canPlaySlowForward {
+            print("I can slow forward")
+        }
+        
+        if userPlaying {
+            player.rate = userPlayRate
+        }
+        //print("NEW rate: \(player.rate).")
+
+    }
+    
+    @IBAction func playPausePressed(_ sender: UIButton) {
+        if !userPlaying {
+            player.playImmediately(atRate: userPlayRate)
+            sender.setTitle("Pause", for: .normal)
+            //userPlaying = false
+        }
+        else {
+            player.pause()
+            sender.setTitle("Play", for: .normal)
+            //userPlaying = true
+        }
+        userPlaying = !userPlaying
     }
 }
 
