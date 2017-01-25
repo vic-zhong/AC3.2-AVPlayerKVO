@@ -12,6 +12,7 @@
 		1E5CB3AE1E390D37004423CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5CB3AC1E390D37004423CA /* Main.storyboard */; };
 		1E5CB3B01E390D37004423CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E5CB3AF1E390D37004423CA /* Assets.xcassets */; };
 		1E5CB3B31E390D37004423CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5CB3B11E390D37004423CA /* LaunchScreen.storyboard */; };
+		1E5CB3BB1E393F0C004423CA /* debussy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E5CB3BA1E393F0C004423CA /* debussy.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		1E5CB3AF1E390D37004423CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E5CB3B21E390D37004423CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E5CB3B41E390D37004423CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E5CB3BA1E393F0C004423CA /* debussy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = debussy.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		1E5CB3A71E390D37004423CA /* AVPlayerKVO */ = {
 			isa = PBXGroup;
 			children = (
+				1E5CB3BA1E393F0C004423CA /* debussy.mp3 */,
 				1E5CB3A81E390D37004423CA /* AppDelegate.swift */,
 				1E5CB3AA1E390D37004423CA /* ViewController.swift */,
 				1E5CB3AC1E390D37004423CA /* Main.storyboard */,
@@ -123,6 +126,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E5CB3BB1E393F0C004423CA /* debussy.mp3 in Resources */,
 				1E5CB3B31E390D37004423CA /* LaunchScreen.storyboard in Resources */,
 				1E5CB3B01E390D37004423CA /* Assets.xcassets in Resources */,
 				1E5CB3AE1E390D37004423CA /* Main.storyboard in Resources */,
