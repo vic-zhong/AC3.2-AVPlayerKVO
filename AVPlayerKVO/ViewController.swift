@@ -12,9 +12,34 @@ import AVFoundation
 private var kvoContext = 0
 
 class ViewController: UIViewController {
-    var player: AVPlayer!
+    var player: AVPlayer! {
+        willSet {
+            if player != nil {
+                if let item = self.player.currentItem {
+                    item.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), context: &kvoContext)
+                    item.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges), context: &kvoContext)
+                }
+                
+                if let token = self.timeObserverToken {
+                    player.removeTimeObserver(token)
+                }
+            }
+            
+            if let item = newValue.currentItem {
+                item.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: .new, context: &kvoContext)
+                item.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges), options: .new, context: &kvoContext)            }
+            
+            let timeInterval = CMTime(value: 1, timescale: 2)
+            self.timeObserverToken = newValue.addPeriodicTimeObserver(forInterval: timeInterval, queue: DispatchQueue.main, using: { (time: CMTime) in
+                print(time)
+                self.updatePositionSlider()
+            })
+        }
+    }
+    
     var userPlayRate: Float = 1.0
     var userPlaying: Bool = false
+    var timeObserverToken: Any?
     
     @IBOutlet weak var videoContainer: UIView!
     @IBOutlet weak var playPauseButton: UIButton!
@@ -24,23 +49,14 @@ class ViewController: UIViewController {
 
         loadAssetFromFile(urlString: "debussy.mp3")
         
-//        if let url = URL(string: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8") {
-//            let playerItem = AVPlayerItem(url: url)
-//            
-//            playerItem.addObserver(self, forKeyPath: "status", options: .new, context: &kvoContext)
-//            
-//            player = AVPlayer(playerItem: playerItem)
-//            
-//            let playerLayer = AVPlayerLayer(player: player)
-//            //playerLayer.frame = self.videoContainer.bounds
-//            self.videoContainer.layer.addSublayer(playerLayer)
-//            
-//            let timeInterval = CMTime(value: 1, timescale: 2)
-//            player.addPeriodicTimeObserver(forInterval: timeInterval, queue: DispatchQueue.main, using: { (time: CMTime) in
-//                print(time)
-//                self.updatePositionSlider()
-//            })
-//        }
+        if let url = URL(string: "https://archive.org/download/VoyagetothePlanetofPrehistoricWomen/VoyagetothePlanetofPrehistoricWomen.mp4") {
+            let playerItem = AVPlayerItem(url: url)
+            
+            self.player = AVPlayer(playerItem: playerItem)
+            
+            let playerLayer = AVPlayerLayer(player: player)
+            self.videoContainer.layer.addSublayer(playerLayer)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -69,25 +85,29 @@ class ViewController: UIViewController {
         if let fileURL = Bundle.main.url(forResource: fileParts.resource, withExtension: fileParts.extension) {
             let asset = AVURLAsset(url: fileURL)
             let playerItem = AVPlayerItem(asset: asset)
-            playerItem.addObserver(self, forKeyPath: "status", options: .new, context: &kvoContext)
+
             self.player = AVPlayer(playerItem: playerItem)
-            
-            let timeInterval = CMTime(value: 1, timescale: 2)
-            player.addPeriodicTimeObserver(forInterval: timeInterval, queue: DispatchQueue.main, using: { (time: CMTime) in
-                print(time)
-                self.updatePositionSlider()
-            })
         }
     }
 
     // MARK: - KVO
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
+        guard let keyPath = keyPath else {
+            return
+        }
         if context == &kvoContext {
-            if keyPath == "status",
-                let item = object as? AVPlayerItem {
+            if let item = object as? AVPlayerItem {
+            switch keyPath {
+            case #keyPath(AVPlayerItem.status):
                 if item.status == .readyToPlay {
                     playPauseButton.isEnabled = true
+                }
+            case #keyPath(AVPlayerItem.loadedTimeRanges):
+                for range in item.loadedTimeRanges {
+                    print(range.timeRangeValue)
+                }
+            default:
+                break
                 }
             }
         }
