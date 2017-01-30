@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,7 @@
                                 </constraints>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="1ly-M6-eNm">
-                                <rect key="frame" x="35" y="236" width="304" height="31"/>
+                                <rect key="frame" x="35" y="236" width="198.5" height="31"/>
                                 <connections>
                                     <action selector="positionSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="OeS-tp-hLM"/>
                                 </connections>
@@ -55,32 +55,45 @@
                                     <action selector="playPausePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jfn-Iw-k81"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00/00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpT-yd-XX2">
+                                <rect key="frame" x="239.5" y="240.5" width="97.5" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="5lC-B8-MQ7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="E6O-cK-MpY" firstAttribute="trailing" secondItem="nVF-Hz-CEb" secondAttribute="trailing" id="4mn-BM-dF1"/>
+                            <constraint firstItem="CpT-yd-XX2" firstAttribute="centerY" secondItem="1ly-M6-eNm" secondAttribute="centerY" id="55L-b5-4zW"/>
                             <constraint firstItem="cD4-Np-Xoz" firstAttribute="top" secondItem="nVF-Hz-CEb" secondAttribute="bottom" constant="73" id="By4-si-Ov4"/>
                             <constraint firstItem="cD4-Np-Xoz" firstAttribute="width" secondItem="nVF-Hz-CEb" secondAttribute="width" multiplier="0.5" id="HmT-uO-USe"/>
                             <constraint firstItem="cD4-Np-Xoz" firstAttribute="leading" secondItem="nVF-Hz-CEb" secondAttribute="leading" id="JUl-RM-rcH"/>
                             <constraint firstItem="nVF-Hz-CEb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="QbN-FE-ZjU"/>
                             <constraint firstItem="1ly-M6-eNm" firstAttribute="top" secondItem="nVF-Hz-CEb" secondAttribute="bottom" constant="8" id="Xiz-rI-VtE"/>
                             <constraint firstItem="E6O-cK-MpY" firstAttribute="bottom" secondItem="cD4-Np-Xoz" secondAttribute="bottom" id="gOM-Xh-l20"/>
-                            <constraint firstItem="1ly-M6-eNm" firstAttribute="width" secondItem="nVF-Hz-CEb" secondAttribute="width" id="hlB-1n-lBG"/>
                             <constraint firstItem="T9j-cV-S5e" firstAttribute="leading" secondItem="cD4-Np-Xoz" secondAttribute="leading" id="mKg-y3-FrR"/>
                             <constraint firstItem="1ly-M6-eNm" firstAttribute="leading" secondItem="nVF-Hz-CEb" secondAttribute="leading" id="nAP-MJ-dTP"/>
                             <constraint firstItem="cD4-Np-Xoz" firstAttribute="top" secondItem="T9j-cV-S5e" secondAttribute="bottom" constant="4" id="pGc-Vt-ob4"/>
                             <constraint firstItem="nVF-Hz-CEb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="pan-ac-QrX"/>
+                            <constraint firstItem="CpT-yd-XX2" firstAttribute="leading" secondItem="1ly-M6-eNm" secondAttribute="trailing" constant="8" id="rx8-7G-0Yt"/>
                             <constraint firstItem="nVF-Hz-CEb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ul8-ia-Pdo"/>
+                            <constraint firstItem="CpT-yd-XX2" firstAttribute="trailing" secondItem="nVF-Hz-CEb" secondAttribute="trailing" id="ww0-UR-IM3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="playPauseButton" destination="E6O-cK-MpY" id="BWm-vZ-vKW"/>
                         <outlet property="positionSlider" destination="1ly-M6-eNm" id="0OK-18-jMa"/>
+                        <outlet property="timeLabel" destination="CpT-yd-XX2" id="9Bs-na-PvY"/>
                         <outlet property="videoContainer" destination="nVF-Hz-CEb" id="tPh-Fs-BpL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="96.7016491754123"/>
         </scene>
     </scenes>
 </document>

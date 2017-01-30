@@ -41,6 +41,7 @@ class ViewController: UIViewController {
     var userPlaying: Bool = false
     var timeObserverToken: Any?
     
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var videoContainer: UIView!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var positionSlider: UISlider!
@@ -76,7 +77,43 @@ class ViewController: UIViewController {
         
         let currentPlace = Float(item.currentTime().seconds / item.duration.seconds)
         self.positionSlider.value = currentPlace
+        DispatchQueue.main.async {
+            
+            let totalTime = Int(item.duration.seconds)
+            let currentTime = Int(currentPlace)
+            
+            let cHours = Int(currentTime / 3600)
+            let cMins = Int(currentTime % 3600 / 60)
+            let cSecs = Int(currentTime % 60)
+            
+            let tHours = Int(totalTime / 3600)
+            let tMins = Int(totalTime %  3600 / 60)
+            let tSecs = Int(totalTime % 60)
+            
+            self.timeLabel.text = String(format: "%i:%02i:%02i/%i:%02i:%02i", cHours, cMins, cSecs, tHours, tMins, tSecs)
+        }
+//        timeLabel.text = "\(cHours):\(cMins):\(cSecs)/\(tHours):\(tMins):\(tSecs)"
     }
+    
+//    func updateTime() {
+//        guard let item = player.currentItem else { return }
+//        
+//        let totalTime = Int(item.duration.seconds)
+//        let currentTime = Int(item.currentTime().seconds / Double(totalTime))
+//        
+//        let cHours = Int(currentTime / 3600)
+//        let cMins = Int(currentTime % 3600 / 60)
+//        let cSecs = Int(currentTime % 60)
+//        
+//        let tHours = Int(totalTime / 3600)
+//        let tMins = Int(totalTime %  3600 / 60)
+//        let tSecs = Int(totalTime % 60)
+//        
+//        let timeLabelText = "\(cHours):\(cMins):\(cSecs)/\(tHours):\(tMins):\(tSecs)"
+//        
+//        timeLabel.text = timeLabelText
+//
+//    }
     
     func loadAssetFromFile(urlString: String) {
         guard let dot = urlString.range(of: ".") else { return }
